@@ -1,0 +1,23 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Merchant
+    network: kovan
+    source:
+      address: "0xb89844126ab8250a239d003e0117b13b62bfdd38"
+      abi: Merchant
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - CreateMerchant
+      abis:
+        - name: Merchant
+          file: ./abis/Merchant.json
+      eventHandlers:
+        - event: CreateMerchant(indexed address,bytes,bytes)
+          handler: handleCreateMerchant
+      file: ./src/mapping.ts

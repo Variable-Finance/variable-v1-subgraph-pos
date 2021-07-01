@@ -1,0 +1,16 @@
+{
+  "name": "POS",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ Variable-Finance/POS",
+    "create-local": "graph create --node http://localhost:8020/ Variable-Finance/POS",
+    "remove-local": "graph remove --node http://localhost:8020/ Variable-Finance/POS",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 Variable-Finance/POS"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.20.0",
+    "@graphprotocol/graph-ts": "0.20.0"
+  }
+}
