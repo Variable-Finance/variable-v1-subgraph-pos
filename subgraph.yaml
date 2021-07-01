@@ -1,4 +1,4 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,9 +8,10 @@ dataSources:
     source:
       address: "0xb89844126ab8250a239d003e0117b13b62bfdd38"
       abi: Merchant
+      startBlock: 25839655
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
         - CreateMerchant
@@ -21,3 +22,23 @@ dataSources:
         - event: CreateMerchant(indexed address,bytes,bytes)
           handler: handleCreateMerchant
       file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: POS
+    network: kovan
+    source:
+      address: "0xf0c52D135185a468C2B1A50Ecd99eAF58DBA9188"
+      abi: POS
+      startBlock: 25839655
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Payment
+      abis:
+        - name: POS
+          file: ./abis/POS.json
+      eventHandlers:
+        - event: Payment(indexed address,indexed address,uint256,string,string)
+          handler: handlePayment
+      file: ./src/payments.ts
