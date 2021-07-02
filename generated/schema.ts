@@ -51,6 +51,23 @@ export class Seller extends Entity {
     this.set("pointer", Value.fromBytes(value));
   }
 
+  get sPointer(): string | null {
+    let value = this.get("sPointer");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set sPointer(value: string | null) {
+    if (value === null) {
+      this.unset("sPointer");
+    } else {
+      this.set("sPointer", Value.fromString(value as string));
+    }
+  }
+
   get merchant(): Bytes {
     let value = this.get("merchant");
     return value.toBytes();
@@ -87,7 +104,7 @@ export class Seller extends Entity {
   }
 }
 
-export class SellerStats extends Entity {
+export class History extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -95,17 +112,17 @@ export class SellerStats extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save SellerStats entity without an ID");
+    assert(id !== null, "Cannot save History entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save SellerStats entity with non-string ID. " +
+      "Cannot save History entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("SellerStats", id.toString(), this);
+    store.set("History", id.toString(), this);
   }
 
-  static load(id: string): SellerStats | null {
-    return store.get("SellerStats", id) as SellerStats | null;
+  static load(id: string): History | null {
+    return store.get("History", id) as History | null;
   }
 
   get id(): string {
@@ -117,8 +134,42 @@ export class SellerStats extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get count(): BigInt | null {
-    let value = this.get("count");
+  get merchant(): Bytes | null {
+    let value = this.get("merchant");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set merchant(value: Bytes | null) {
+    if (value === null) {
+      this.unset("merchant");
+    } else {
+      this.set("merchant", Value.fromBytes(value as Bytes));
+    }
+  }
+
+  get customer(): Bytes | null {
+    let value = this.get("customer");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set customer(value: Bytes | null) {
+    if (value === null) {
+      this.unset("customer");
+    } else {
+      this.set("customer", Value.fromBytes(value as Bytes));
+    }
+  }
+
+  get amount(): BigInt | null {
+    let value = this.get("amount");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -126,79 +177,29 @@ export class SellerStats extends Entity {
     }
   }
 
-  set count(value: BigInt | null) {
+  set amount(value: BigInt | null) {
     if (value === null) {
-      this.unset("count");
+      this.unset("amount");
     } else {
-      this.set("count", Value.fromBigInt(value as BigInt));
+      this.set("amount", Value.fromBigInt(value as BigInt));
     }
   }
-}
 
-export class Sales extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save Sales entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Sales entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Sales", id.toString(), this);
-  }
-
-  static load(id: string): Sales | null {
-    return store.get("Sales", id) as Sales | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get merchant(): Bytes {
-    let value = this.get("merchant");
-    return value.toBytes();
-  }
-
-  set merchant(value: Bytes) {
-    this.set("merchant", Value.fromBytes(value));
-  }
-
-  get customer(): Bytes {
-    let value = this.get("customer");
-    return value.toBytes();
-  }
-
-  set customer(value: Bytes) {
-    this.set("customer", Value.fromBytes(value));
-  }
-
-  get amount(): BigInt {
-    let value = this.get("amount");
-    return value.toBigInt();
-  }
-
-  set amount(value: BigInt) {
-    this.set("amount", Value.fromBigInt(value));
-  }
-
-  get token(): string {
+  get token(): string | null {
     let value = this.get("token");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set token(value: string) {
-    this.set("token", Value.fromString(value));
+  set token(value: string | null) {
+    if (value === null) {
+      this.unset("token");
+    } else {
+      this.set("token", Value.fromString(value as string));
+    }
   }
 
   get timestamp(): BigInt | null {
@@ -215,6 +216,23 @@ export class Sales extends Entity {
       this.unset("timestamp");
     } else {
       this.set("timestamp", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get pointer(): string | null {
+    let value = this.get("pointer");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set pointer(value: string | null) {
+    if (value === null) {
+      this.unset("pointer");
+    } else {
+      this.set("pointer", Value.fromString(value as string));
     }
   }
 }

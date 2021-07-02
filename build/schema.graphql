@@ -1,21 +1,18 @@
 type Seller @entity {
   id: ID!
   pointer: Bytes!
+  sPointer: String
   merchant: Bytes! # address
   infohash: Bytes! # bytes
   timestamp: BigInt
 }
 
-type SellerStats @entity {
+type History @entity {
   id: ID!
-  count: BigInt
-}
-
-type Sales @entity {
-  id: ID!
-  merchant: Bytes!
-  customer: Bytes!
-  amount: BigInt!
-  token: String!
+  merchant: Bytes
+  customer: Bytes
+  amount: BigInt
+  token: String
   timestamp: BigInt
+  pointer: String
 }

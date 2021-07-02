@@ -17,6 +17,7 @@ export function handleCreateMerchant(event: CreateMerchant): void {
   entity.infohash = event.params.infohash
   entity.pointer = event.params.pointer;
   entity.timestamp = event.block.timestamp;
+  entity.sPointer = event.params.pointer.toString();
 
   // Entities can be written to the store with `.save()`
   entity.save()

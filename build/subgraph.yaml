@@ -38,6 +38,8 @@ dataSources:
       abis:
         - name: POS
           file: POS/abis/POS.json
+        - name: Merchant
+          file: POS/abis/Merchant.json
       eventHandlers:
         - event: Payment(indexed address,indexed address,uint256,string,string)
           handler: handlePayment
