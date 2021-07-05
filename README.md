@@ -1,5 +1,7 @@
 # Variable Finance Subgraphs For POS
 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://raw.githubusercontent.com/KnowYourDeFi/knowyourdefi.github.io/master/LICENSE)
+
 This repository contains the subgraphs of the Variable Finance Proof Of Sale eco-system. Subgraphs are prelminarily used for the purpose of making querying on blockchain much more faster & quicker. This is a project for HackMoney 2021.
 
 ### Table of contents
@@ -65,3 +67,5 @@ Step by step instructions on setting up the project and running it
    > If a smart contract or event is editted then the subgraph.yaml file and the ABI of the contract should've to be changed. They're named after them.
 
 All configuration is done in subgraph.yaml file.
+
+
