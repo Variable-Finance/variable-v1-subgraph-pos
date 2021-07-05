@@ -26,7 +26,7 @@ dataSources:
     name: POS
     network: kovan
     source:
-      address: "0xf0c52D135185a468C2B1A50Ecd99eAF58DBA9188"
+      address: "0xD6397aa8fC36ac8976977a568F6600F7BDfb0E6b"
       abi: POS
       startBlock: 25839655
     mapping:

@@ -3,7 +3,7 @@ type Seller @entity {
   pointer: Bytes!
   sPointer: String
   merchant: Bytes! # address
-  infohash: Bytes! # bytes
+  infohash: String! # bytes
   timestamp: BigInt
 }
 

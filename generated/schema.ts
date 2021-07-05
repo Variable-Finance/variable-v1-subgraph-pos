@@ -77,13 +77,13 @@ export class Seller extends Entity {
     this.set("merchant", Value.fromBytes(value));
   }
 
-  get infohash(): Bytes {
+  get infohash(): string {
     let value = this.get("infohash");
-    return value.toBytes();
+    return value.toString();
   }
 
-  set infohash(value: Bytes) {
-    this.set("infohash", Value.fromBytes(value));
+  set infohash(value: string) {
+    this.set("infohash", Value.fromString(value));
   }
 
   get timestamp(): BigInt | null {

@@ -303,31 +303,20 @@ export class POS extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  resolveAmount(_ticker: string, _usd: BigInt): BigInt {
-    let result = super.call(
-      "resolveAmount",
-      "resolveAmount(string,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(_ticker),
-        ethereum.Value.fromUnsignedBigInt(_usd)
-      ]
-    );
+  sAmount(_ticker: string, _usd: BigInt): BigInt {
+    let result = super.call("sAmount", "sAmount(string,uint256):(uint256)", [
+      ethereum.Value.fromString(_ticker),
+      ethereum.Value.fromUnsignedBigInt(_usd)
+    ]);
 
     return result[0].toBigInt();
   }
 
-  try_resolveAmount(
-    _ticker: string,
-    _usd: BigInt
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "resolveAmount",
-      "resolveAmount(string,uint256):(uint256)",
-      [
-        ethereum.Value.fromString(_ticker),
-        ethereum.Value.fromUnsignedBigInt(_usd)
-      ]
-    );
+  try_sAmount(_ticker: string, _usd: BigInt): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("sAmount", "sAmount(string,uint256):(uint256)", [
+      ethereum.Value.fromString(_ticker),
+      ethereum.Value.fromUnsignedBigInt(_usd)
+    ]);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -393,6 +382,27 @@ export class POS extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  tAmount(_ticker: string, _usd: BigInt): BigInt {
+    let result = super.call("tAmount", "tAmount(string,uint256):(uint256)", [
+      ethereum.Value.fromString(_ticker),
+      ethereum.Value.fromUnsignedBigInt(_usd)
+    ]);
+
+    return result[0].toBigInt();
+  }
+
+  try_tAmount(_ticker: string, _usd: BigInt): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("tAmount", "tAmount(string,uint256):(uint256)", [
+      ethereum.Value.fromString(_ticker),
+      ethereum.Value.fromUnsignedBigInt(_usd)
+    ]);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 }
 

@@ -18,11 +18,11 @@ export function handlePayment(event: Payment): void {
 
   entity.merchant = event.params.merchant
   entity.customer = event.params.from
-  entity.amount = event.params.amount;
-  entity.token = event.params.token;
-  entity.timestamp = event.block.timestamp;
+  entity.amount = event.params.amount
+  entity.token = event.params.token
+  entity.timestamp = event.block.timestamp
 
-  entity.pointer = contract.merchantInfo(event.params.merchant).value2.toString();
+  entity.pointer = contract.merchantInfo(event.params.merchant).value2.toString()
 
   // Entities can be written to the store with `.save()`
   entity.save()
